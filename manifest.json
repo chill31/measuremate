@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "MeasureMate",
+  "version": "1.0",
+  "description": "Easy to use browser extension to convert units",
+  "icons": {
+    "48": "icons/icon48.png",
+    "96": "icons/icon96.png"
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "browser_action": {
+    "default_area": "navbar",
+    "default_popup": "popup/index.html",
+    "default_title": "MeasureMate",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}

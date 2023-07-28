@@ -1,0 +1,104 @@
+body {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+:not(input)::selection {
+  background-color: black;
+  color: white;
+}
+
+* {
+  font-family: "Rubik";
+  font-weight: 300;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 500;
+  margin: 0;
+}
+
+h1 {
+  font-size: 2.3rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+input {
+  padding: .1rem .2rem;
+  font-family: "Rubik";
+  font-size: 1.1rem;
+  width: 16rem;
+}
+
+input:focus {
+  outline: solid 1px #21a0d1;
+}
+
+/** ACTUAL STYLES */
+
+header {
+  width: 100%;
+  overflow: hidden;
+  background-color: #21a0d1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  height: 18rem;
+}
+
+.logo {
+  height: 100px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.title {
+  font-size: 2.3rem;
+}
+
+.body-wrapper {
+  width: 100%;
+  background-color: #21a0d101;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1ch;
+  align-items: center;
+  justify-content: center;
+}
+
+.row {
+  width: calc(100% - 2rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row-unit-name {
+  font-weight: 500;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .2rem;
+}
+
+input.half {
+  width: 7.6rem;
+}
+
