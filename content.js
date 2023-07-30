@@ -1,1 +1,1 @@
-console.log('MeasureMate is on and working.')
+console.log('[content.js] MeasureMate is on and working.')

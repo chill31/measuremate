@@ -1,14 +1,16 @@
 {
   "manifest_version": 2,
   "name": "MeasureMate",
-  "version": "1.1",
+  "version": "1.2",
   "description": "Easy to use browser extension to convert units",
   "icons": {
     "48": "icons/icon48.png",
     "96": "icons/icon96.png"
   },
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "contextMenus",
+    "tabs"
   ],
   "browser_action": {
     "default_area": "navbar",
@@ -25,5 +27,8 @@
       "matches": ["<all_urls>"],
       "js": ["content.js"]
     }
-  ]
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  }
 }

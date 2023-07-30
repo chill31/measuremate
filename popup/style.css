@@ -68,6 +68,12 @@ header {
   font-size: 2.3rem;
 }
 
+.brief {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-inline: 1rem;
+}
+
 .body-wrapper {
   width: 100%;
   background-color: #21a0d101;
@@ -75,9 +81,23 @@ header {
 
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.unit-type-container {
+  width: calc(100% - 2rem);
+  display: flex;
+  flex-direction: column;
   gap: 1ch;
   align-items: center;
   justify-content: center;
+}
+
+.unit-type-name {
+  align-self: flex-start;
+  font-size: 1.8rem;
 }
 
 .row {

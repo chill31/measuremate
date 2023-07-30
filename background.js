@@ -1,0 +1,1 @@
+console.log('[background.js] MeasureMate is on.')
