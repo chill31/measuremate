@@ -36,7 +36,7 @@ const conversions = {
     to_cm: 30.48,
     to_m: 0.3048,
     to_km: 0.0003048,
-    to_in: 12,
+    to_in: 1,
     to_yd: 0.33,
     to_mi: 0.000189394,
   },
@@ -93,38 +93,27 @@ allInputs.forEach((input) => {
 
   input.addEventListener("input", (e) => {
 
-
+    // the unit which will be converted to all the other units.
     const inputUnit = e.target.classList[1];
-    const takenValue = e.target.valueAsNumber; // not using this for converting.
+    const inputValue = e.target.valueAsNumber;
 
-    let inputValue = takenValue; // used for converting.
+    // selecting 
+    const allOtherInputs = document.querySelectorAll(`input:not(.${inputUnit})`);
+    allOtherInputs.forEach((loopInput) => {
 
-    // here, I need to check if the value is NaN, and also, if the feet is in some number, then inches should just be down to 0, not converting everything else.
+      if (loopInput.classList[1] === 'in') {
+        let inches = inputValue * conversions[`from_${inputUnit}`]["to_in"];
+        const feet = inches / 12;
 
-    if (e.target.classList[1] === 'in' && Number.isNaN(inputValue) && document.querySelector(".ft").valueAsNumber > 0) {
-      document.querySelector(".in").value = 0;
-    } {
+        inches = feet % 12;
 
-      if(Number.isNaN(inputValue)) inputValue = 0;
+        document.querySelector('.ft').value = feet;
+        document.querySelector('.in').value = inches;
+      } else {
+        loopInput.value = inputValue * conversions[`from_${inputUnit}`][`to_${loopInput.classList[1]}`];
+      }
+    })
 
-      const allOtherInputs = document.querySelectorAll(`input:not(.${inputUnit})`); // taking all the other unit inputs so it doesn't crash while trying to convert itself.
-
-      allOtherInputs.forEach((unitInput) => {
-        console.log(unitInput.classList[1]);
-        if (unitInput.classList[1] !== 'ft') {
-          unitInput.value = inputValue * conversions[`from_${inputUnit}`][`to_${unitInput.classList[1]}`]
-        } else {
-          let inches = Math.round(inputValue * conversions[`from_${inputUnit}`]["to_in"])
-          const feet = Math.round(inches / 12);
-
-          inches = inches % 12;
-          console.log(feet, inches);
-
-          document.querySelector(".ft").value = feet;
-          document.querySelector('.in').value = inches;
-        }
-      });
-    }
   });
 
 });
