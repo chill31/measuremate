@@ -36,8 +36,7 @@ const length_conversions = {
     cm: 30.48,
     m: 0.3048,
     km: 0.0003048,
-    in: 1,
-    ft: 1,
+    in: 12,
     yd: 0.33,
     mi: 0.000189394,
   },
@@ -45,7 +44,7 @@ const length_conversions = {
     mm: 25.4,
     cm: 2.54,
     m: 0.0254,
-    in: 1,
+    ft: 1/12,
     km: 0.00002540005,
     yd: 0.0277778,
     mi: 0.00001578282,
@@ -217,19 +216,44 @@ lengthInputs.forEach((input) => {
     const inputValue = e.target.valueAsNumber;
 
     // selecting 
-    const allOtherInputs = document.querySelectorAll(`.length-unit:not(.${inputUnit})`);
+    let allOtherInputs = document.querySelectorAll(`.length-unit:not(.${inputUnit})`);
+
+    if (e.target.classList[1] === 'ft' || e.target.classList[1] === 'in') allOtherInputs = document.querySelectorAll(`.length-unit:not(.ft):not(.in)`);
+
     allOtherInputs.forEach((loopInput) => {
 
-      if (loopInput.classList[1] === 'in') {
-        let inches = inputValue * length_conversions[`${inputUnit}`]["in"];
-        const feet = inches / 12;
+      if(e.target.classList[1] !== 'ft' && e.target.classList[1] !== 'in') {
 
-        inches = feet % 12;
+        if (loopInput.classList[1] === 'in') {
+          let inches = inputValue * length_conversions[`${inputUnit}`]["in"];
+          const feet = Math.floor(inches / 12);
+          const remainingInches = inches % 12;
 
-        document.querySelector('.ft').value = feet;
-        document.querySelector('.in').value = inches;
+          document.querySelector('.ft').value = feet;
+          document.querySelector('.in').value = remainingInches;
+        } else {
+          loopInput.value = inputValue * length_conversions[`${inputUnit}`][`${loopInput.classList[1]}`];
+        }
+
       } else {
-        loopInput.value = inputValue * length_conversions[`${inputUnit}`][`${loopInput.classList[1]}`];
+
+        if(e.target.classList[1] === 'ft') {
+          const inchesValue = document.querySelector(".in").valueAsNumber;
+          const feetValue = e.target.valueAsNumber;
+
+          const toBeConvertedValue = feetValue + (inchesValue/12);
+
+          loopInput.value = toBeConvertedValue * length_conversions[`${inputUnit}`][`${loopInput.classList[1]}`];
+        }
+
+        if(e.target.classList[1] === 'in') {
+          const feetValue = document.querySelector('.ft').valueAsNumber;
+          const inchValue = e.target.valueAsNumber;
+
+          const toBeConvertedValue = inchValue + (feetValue*12);
+          loopInput.value = toBeConvertedValue * length_conversions[`${inputUnit}`][`${loopInput.classList[1]}`];
+        }
+
       }
     })
 
