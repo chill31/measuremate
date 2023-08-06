@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "MeasureMate",
-  "version": "1.4",
+  "version": "1.5",
   "description": "Easy to use browser extension to convert units",
   "icons": {
     "48": "icons/icon48.png",
